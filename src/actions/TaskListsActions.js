@@ -37,21 +37,19 @@ const TaskListsActions = {
     },
 
     loadTaskList(taskListId) {
-        console.log('2222');
-        //api.getTaskList(taskListId);
-        // .then(data => {
-        //     console.log(data);
-        //     // AppDispatcher.dispatch({
-        //     //     type: AppConstants.TASK_LIST_LOAD_SUCCESS,
-        //     //     list: data.list
-        //     // });
-        // })
-        // .catch(err => {
-        //     AppDispatcher.dispatch({
-        //         type: AppConstants.TASK_LIST_LOAD_FAIL,
-        //         error: err
-        //     })
-        // });
+        api.getTaskList(taskListId)
+        .then(data => {
+            AppDispatcher.dispatch({
+                type: AppConstants.TASK_LIST_LOAD_SUCCESS,
+                listName: data.title
+            });
+        })
+        .catch(err => {
+            AppDispatcher.dispatch({
+                type: AppConstants.TASK_LIST_LOAD_FAIL,
+                error: err
+            })
+        });
     }
 };
 

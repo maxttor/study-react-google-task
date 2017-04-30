@@ -14,12 +14,9 @@ import TaskCreateModal from './TaskCreateModal.jsx';
 import './TasksPage.less';
 
 function getStateFromFlux() {
-
-    console.log(TaskListsStore.getTaskList());
-
     return {
         tasks: TasksStore.getTasks(),
-        list: null
+        listName: TaskListsStore.getTaskListName()
     };
 }
 
@@ -44,6 +41,7 @@ const TasksPage = React.createClass({
     componentWillReceiveProps(nextProps) {
         if (this.props.params.id !== nextProps.params.id) {
             TasksActions.loadTasks(nextProps.params.id);
+            TaskListsActions.loadTaskList(this.props.params.id);
         }
     },
 
@@ -92,6 +90,7 @@ const TasksPage = React.createClass({
     },
 
     render() {
+        console.log(this.state.listName);
         return (
             <div className='TasksPage'>
                 <div className='TasksPage__header'>

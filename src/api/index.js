@@ -92,7 +92,7 @@ export default {
         });
 
         return new Promise((resolve, reject) => {
-            request.execute(resp => console.log('111'));
+            request.execute(resp => resolve(resp));
         });
 
     }
