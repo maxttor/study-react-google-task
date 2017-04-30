@@ -41,7 +41,7 @@ const TasksPage = React.createClass({
     componentWillReceiveProps(nextProps) {
         if (this.props.params.id !== nextProps.params.id) {
             TasksActions.loadTasks(nextProps.params.id);
-            TaskListsActions.loadTaskList(this.props.params.id);
+            TaskListsActions.loadTaskList(nextProps.params.id);
         }
     },
 
@@ -89,6 +89,10 @@ const TasksPage = React.createClass({
         this.setState({ isCreatingTask : false });
     },
 
+    _onChange() {
+        this.setState(getStateFromFlux());
+    },
+
     render() {
         console.log(this.state.listName);
         return (
@@ -123,10 +127,6 @@ const TasksPage = React.createClass({
                 />
             </div>
         );
-    },
-
-    _onChange() {
-        this.setState(getStateFromFlux());
     }
 });
 
